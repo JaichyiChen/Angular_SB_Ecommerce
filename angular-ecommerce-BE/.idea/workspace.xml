@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e12997df-09f4-4c0a-8ff6-2bee04152d15" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-ecommerce/src/main/java/com/angular/springbootecommerce/dao/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-ecommerce/src/main/java/com/angular/springbootecommerce/dao/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-ecommerce/src/main/java/com/angular/springbootecommerce/config/DataRestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-ecommerce/src/main/java/com/angular/springbootecommerce/config/DataRestConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-ecommerce-FE/src/app/components/product-list/product-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../angular-ecommerce-FE/src/app/components/product-list/product-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular-ecommerce-FE/src/app/models/product.spec.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

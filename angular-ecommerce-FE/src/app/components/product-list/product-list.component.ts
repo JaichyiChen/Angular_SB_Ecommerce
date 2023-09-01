@@ -17,6 +17,7 @@ export class ProductListComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
+    //staying on the same component, so subscription is needed to refetch when param change
     this.route.paramMap.subscribe(() => {
       this.getProductList();
     });
