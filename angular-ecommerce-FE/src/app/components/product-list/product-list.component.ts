@@ -11,6 +11,8 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
   currentCategoryId: number = 1;
+  searchMode: boolean = false;
+
   //ActivatedRoute used for accessing current route param
   constructor(
     private productService: ProductService,
@@ -24,6 +26,16 @@ export class ProductListComponent implements OnInit {
   }
 
   getProductList() {
+    //conditionally render based on if in search mode or not
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
+    if (this.searchMode) {
+      this.handleSearchProducts();
+    } else {
+      this.handleListProducts();
+    }
+  }
+
+  handleListProducts() {
     //check if "id" param is available
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
 
@@ -37,6 +49,13 @@ export class ProductListComponent implements OnInit {
     //now get products based on category id
     this.productService
       .getProductList(this.currentCategoryId)
+      .subscribe((data) => (this.products = data));
+  }
+  handleSearchProducts() {
+    const keyWord: string = this.route.snapshot.paramMap.get('keyword')!;
+
+    this.productService
+      .searchProducts(keyWord)
       .subscribe((data) => (this.products = data));
   }
 }
