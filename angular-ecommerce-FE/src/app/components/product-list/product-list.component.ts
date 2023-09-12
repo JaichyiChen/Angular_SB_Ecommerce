@@ -76,9 +76,7 @@ export class ProductListComponent implements OnInit {
         this.thePageNumber - 1,
         this.thePageSize
       )
-      .subscribe((data) => {
-        this.processResult();
-      });
+      .subscribe(this.processResult());
   }
 
   handleSearchProducts() {

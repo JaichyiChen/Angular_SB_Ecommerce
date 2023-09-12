@@ -4,3 +4,21 @@
   margin-right: auto;
 }
 
+.footer-pagination{
+
+display: flex;
+justify-content: space-between;
+}
+.page-size{
+  display: flex;
+  width: 15%;
+}
+.page-size p{
+  font-weight: 700;
+  color: black;
+  margin-top: 0.4em;
+  margin-right: 1em;
+}
+.form-select{
+  width: 50%;
+}
