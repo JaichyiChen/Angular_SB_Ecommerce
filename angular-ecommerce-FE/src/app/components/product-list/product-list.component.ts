@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from 'src/app/models/cartItem';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -25,7 +27,8 @@ export class ProductListComponent implements OnInit {
   //ActivatedRoute used for accessing current route param
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService
   ) {}
   ngOnInit(): void {
     //staying on the same component, so subscription is needed to refetch when param change
@@ -65,9 +68,6 @@ export class ProductListComponent implements OnInit {
     }
 
     this.previousCategoryId = this.currentCategoryId;
-    console.log(
-      `current category id = ${this.currentCategoryId}, the page number = ${this.thePageNumber}`
-    );
 
     //now get products based on category id
     this.productService
@@ -90,9 +90,6 @@ export class ProductListComponent implements OnInit {
     }
 
     this.previousKeyword = keyWord;
-    console.log(
-      `prev keyword ${this.previousKeyword}, page number ${this.thePageNumber}`
-    );
 
     this.productService
       .searchProductListPaginate(
@@ -118,5 +115,13 @@ export class ProductListComponent implements OnInit {
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements;
     };
+  }
+
+  //handle add to cart
+  addToCart(product: any) {
+    //TODO ... implement functionality
+
+    const theCartItem = new CartItem(product);
+    this.cartService.addToCart(theCartItem);
   }
 }
