@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { start } from '@popperjs/core';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
   selector: 'app-checkout',
@@ -11,8 +13,12 @@ export class CheckoutComponent implements OnInit {
 
   totalPrice: number = 0;
   totalQuantity: number = 0;
-
-  constructor(private formBuilder: FormBuilder) {}
+  creditCardMonths: number[] = [];
+  creditCardYears: number[] = [];
+  constructor(
+    private formBuilder: FormBuilder,
+    private formService: FormService
+  ) {}
 
   ngOnInit(): void {
     this.checkoutFormGroup = this.formBuilder.group({
@@ -44,6 +50,15 @@ export class CheckoutComponent implements OnInit {
         expirationYear: [''],
       }),
     });
+
+    this.formService
+      .getCreditCardMonths()
+      .subscribe((data) => (this.creditCardMonths = data));
+
+    //populate credit card years
+    this.formService
+      .getCreditCardYears()
+      .subscribe((data) => (this.creditCardYears = data));
   }
 
   copyShippingAddressToBillingAddress(event: Event) {
