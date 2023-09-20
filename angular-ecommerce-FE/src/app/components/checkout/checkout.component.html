@@ -51,8 +51,9 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="country">
-                  <option>To do</option>
+                <select formControlName="country" (change)="getStates('shippingAddress')">
+                  <!-- ngValue binding entire country object to the form control -->
+                  <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                 </select>
               </div>
             </div>
@@ -86,7 +87,7 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="state">
-                  <option>To do</option>
+                  <option *ngFor="let state of shippingAddressStates">{{state.name}}</option>
                 </select>
               </div>
             </div>
@@ -123,8 +124,8 @@
             </div>
             <div class="col-md-9">
               <div class="input-space">
-                <select formControlName="country">
-                  <option>To do</option>
+                <select formControlName="country" (change)="getStates('billingAddress')">
+                  <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                 </select>
               </div>
             </div>
@@ -158,7 +159,7 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="state">
-                  <option>To do</option>
+                  <option *ngFor="let state of billingAddressStates">{{state.name}}</option>
                 </select>
               </div>
             </div>
