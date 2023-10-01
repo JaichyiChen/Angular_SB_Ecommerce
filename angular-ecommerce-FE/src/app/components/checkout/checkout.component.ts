@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Country } from 'src/app/models/country';
 import { State } from 'src/app/models/state';
+import { CartService } from 'src/app/services/cart.service';
 import { FormService } from 'src/app/services/form.service';
 import { CustomValidators } from 'src/app/validators/custom-validators';
 
@@ -28,10 +29,14 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private formService: FormService
+    private formService: FormService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
+    this.reviewCartDetails();
+
+    //build checkout form
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: [
@@ -206,6 +211,13 @@ export class CheckoutComponent implements OnInit {
   }
   get CreditCardSecurityCode() {
     return this.checkoutFormGroup.get('creditCard.securityCode');
+  }
+
+  reviewCartDetails() {
+    this.cartService.totalQuantity.subscribe(
+      (data) => (this.totalQuantity = data)
+    );
+    this.cartService.totalPrice.subscribe((data) => (this.totalPrice = data));
   }
 
   onSubmit() {
